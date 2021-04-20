@@ -84,5 +84,30 @@ class EpisodeListParserTest(unittest.TestCase):
         pass
 
 
+class VideoPageParseTest(unittest.TestCase):
+    def setUp(self):
+        request = Object()
+        with open("resources/video_page.html", "r") as page:
+            request.text = page.read()
+
+        requests.get = MagicMock(return_value=request)
+        self.parser = VideoPageParser(4699)
+
+    def test_soup(self):
+        requests.get.assert_called_once_with(
+            "https://smeshariki-mir.ru/?page_id=4699")
+
+        with open("resources/video_page.html", "r") as page:
+            expected_soup = BeautifulSoup(page.read(), "lxml")
+            self.assertEqual(expected_soup, self.parser._soup)
+
+    def test_get_video_link(self):
+        self.assertEqual("https://youtu.be/U4-XswGeY8E?t=21",
+                         self.parser.get_video_link(21))
+
+    def tearDown(self):
+        pass
+
+
 if __name__ == '__main__':
     unittest.main()
