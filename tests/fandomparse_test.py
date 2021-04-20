@@ -11,7 +11,7 @@ class Object:
     pass
 
 
-class MyTestCase(unittest.TestCase):
+class FandomParseTestCase(unittest.TestCase):
     def setUp(self):
         request = Object()
         with open("resources/fandomparse_test_page.html", "r") as page:
