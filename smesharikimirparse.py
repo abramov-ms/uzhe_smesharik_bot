@@ -22,7 +22,9 @@ class EpisodeListParser(SmesharikiMirParser):
     def __init__(self, webpage_index):
         request = requests.get(SmesharikiMirParser._page_url(webpage_index))
         self._soup = BeautifulSoup(request.text, "lxml")
-        self._episode_rows = self._soup.find_all("tr", {"class": "table-gr"})
+        self._episode_rows = self._soup.find_all(
+            "tr",
+            {"class": ["table-gr", "table-y", "table-g"], "valign": "top"})
 
     def get_episode_name(self, episode_number):
         episode_row = self._episode_rows[self._episode_index(episode_number)]
