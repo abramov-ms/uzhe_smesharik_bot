@@ -10,10 +10,8 @@ class FandomParser:
     _fandomUrl = "https://losyash-library.fandom.com/ru/wiki/"
 
     def __init__(self, episode_name):
-        if episode_name[-2] == "-":
-            episode_name = episode_name[:-2]
-        self._webpage_url = FandomParser._fandomUrl + \
-            episode_name.replace(" ", "_")
+        self._webpage_url = FandomParser._fandomUrl +\
+                            FandomParser._prepare_episode_name(episode_name)
 
         request = requests.get(self._webpage_url)
         self._soup = BeautifulSoup(request.text, "lxml")
@@ -32,3 +30,10 @@ class FandomParser:
                         if element.text.strip() != ""]
 
         return section_list
+
+    @staticmethod
+    def _prepare_episode_name(episode_name):
+        if episode_name[-2] == "-":
+            episode_name = episode_name[:-2]
+
+        return episode_name.replace(" ", "_")
