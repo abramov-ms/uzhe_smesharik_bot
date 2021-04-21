@@ -26,7 +26,7 @@ class FandomParser:
         section_header = section_span.parent
         section_ul_list = section_header.next_sibling.next_sibling
         section_list = [element.text.strip() for element in
-                        section_ul_list.find_all("li")
+                        section_ul_list.find_all("li", recursive=False)
                         if element.text.strip() != ""]
 
         return section_list
@@ -37,3 +37,10 @@ class FandomParser:
             episode_name = episode_name[:-2]
 
         return episode_name.replace(" ", "_")
+
+
+if __name__ == '__main__':
+    parser = FandomParser("Смысл жизни")
+    section = parser.get_section_list("Интересные факты")
+    print("\n\n".join(section))
+    print(len(section))

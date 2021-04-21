@@ -39,7 +39,7 @@ class FandomParseTestCase(unittest.TestCase):
         self.assertEqual(5, len(self.parser.get_section_list("Персонажи")))
         self.assertEqual(7, len(self.parser.get_section_list("Ляпы")))
         self.assertEqual(
-            7, len(self.parser.get_section_list("Интересные факты")))
+            6, len(self.parser.get_section_list("Интересные факты")))
 
     def test_prepare_episode_name(self):
         self.assertEqual(
