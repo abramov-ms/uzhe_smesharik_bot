@@ -5,7 +5,7 @@ import handlers
 
 
 PORT = int(os.environ.get("PORT", 8443))
-TOKEN = "1725080540:AAEOekc4Wf7xGn1-Nza2CoBHJ6Rwn8GUbcQ"
+TOKEN = os.environ["TELEGRAM_API_TOKEN"]
 
 
 def main():
