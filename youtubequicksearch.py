@@ -1,8 +1,9 @@
+import os
 from pyyoutube import Api
 
 
 class FirstResultSearcher:
-    _api = Api(api_key="AIzaSyBWyP2NFMJd6v24FPnf4g1ghDnpcRogeF4")
+    _api = Api(api_key=os.environ["YOUTUBE_API_KEY"])
     _videoUrl = "https://youtu.be/{}?t={}"
 
     def get_youtube_video_url(self, query, timecode=0):
